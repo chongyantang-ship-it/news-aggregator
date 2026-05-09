@@ -30,22 +30,26 @@ The program fetches article data from NewsAPI, enriches it with additional webpa
 
 ## Project Structure
 
+```text
 technology-news-aggregator/
 ├── aggregator.py
 ├── news_api.py
 ├── scraper.py
 ├── processor.py
 ├── visualizer.py
+├── gui.py
 ├── run_project.py
 ├── config.example.py
 ├── requirements.txt
 ├── README.md
+├── report.md
 ├── data/
 │   └── technology_news.csv
 └── tests/
     ├── test_processor.py
     ├── test_news_api.py
     └── test_scraper.py
+```
 
 ## Installation
 
@@ -103,9 +107,11 @@ Note: The Tkinter GUI should be run in a local Python environment such as VS Cod
 
 Run the tests:
 
+```bash
 python tests/test_processor.py
 python tests/test_news_api.py
 python tests/test_scraper.py
+```
 
 ## Ethical Considerations
 
