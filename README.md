@@ -1,15 +1,16 @@
-# Technology News Aggregator
+# News Aggregator
 
 ## Project Overview
 
-The Technology News Aggregator is a Python-based application that collects technology-related news articles using both NewsAPI and web scraping.
+The News Aggregator is a Python-based application that collects news articles using both NewsAPI and web scraping.
 
 The program fetches article data from NewsAPI, enriches it with additional webpage information using BeautifulSoup, cleans the combined dataset with pandas, exports the data to CSV, visualises article distribution by source, and includes unit tests.
 
 ## Features
 
-- Fetch real-time technology news using NewsAPI
+- Fetch news using NewsAPI
 - Search news by keyword
+- Filter news by category or source
 - Scrape additional article information such as title, author, publication date, and summary
 - Combine API and scraped data
 - Remove duplicate records
@@ -31,7 +32,7 @@ The program fetches article data from NewsAPI, enriches it with additional webpa
 ## Project Structure
 
 ```text
-technology-news-aggregator/
+news-aggregator/
 ├── aggregator.py
 ├── news_api.py
 ├── scraper.py
@@ -44,7 +45,7 @@ technology-news-aggregator/
 ├── README.md
 ├── report.md
 ├── data/
-│   └── technology_news.csv
+│   └── news.csv
 └── tests/
     ├── test_processor.py
     ├── test_news_api.py
@@ -56,7 +57,7 @@ technology-news-aggregator/
 Clone the repository:
 
 git clone <repository_url>
-cd technology-news-aggregator
+cd news-aggregator
 
 Install dependencies:
 
@@ -78,10 +79,13 @@ Run the project:
 python run_project.py
 
 The program will ask for:
-1. A technology keyword
+1. A news keyword
 2. The number of articles
+3. Whether to filter by category or source
+4. A preferred category or source
 
-The application will then fetch technology news, scrape additional information, clean the data, save the results to CSV, and display a visualisation.
+The application will then fetch filtered news articles, scrape additional information, clean the data, save the results to data/news.csv, and display a visualisation.
+
 
 
 
@@ -94,12 +98,14 @@ To run the GUI version:
 python gui.py
 
 The GUI allows users to:
-1. Enter a technology keyword
+1. Enter a news keyword
 2. Enter the number of articles
-3. Fetch news articles
-4. View article titles, sources, URLs, authors, publication dates, and summaries
-5. Visualise article distribution by source
-6. Save the cleaned dataset to CSV
+3. Choose whether to filter by category or source
+4. Select a preferred category or source
+5. Fetch news articles
+6. View article titles, sources, URLs, authors, publication dates, and summaries
+7. Visualise article distribution by source
+8. Save the cleaned dataset to CSV
 
 Note: The Tkinter GUI should be run in a local Python environment such as VS Code, PyCharm, or terminal. It may not display properly in Google Colab.
 
@@ -119,4 +125,4 @@ This project follows ethical web scraping practices by scraping only publicly ac
 
 ## Authors
 
-Group Project - Technology News Aggregator
+Group Project - News Aggregator

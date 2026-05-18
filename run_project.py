@@ -1,6 +1,6 @@
 from aggregator import (
-    TechnologyNewsAggregator
+    NewsAggregator
 )
 
-app = TechnologyNewsAggregator()
+app = NewsAggregator()
 app.run()

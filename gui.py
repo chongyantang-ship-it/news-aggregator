@@ -8,12 +8,12 @@ from visualizer import NewsVisualizer
 
 class NewsAggregatorGUI:
     """
-    Tkinter GUI for the Technology News Aggregator.
+    Tkinter GUI for the News Aggregator.
     """
 
     def __init__(self, root):
         self.root = root
-        self.root.title("Technology News Aggregator")
+        self.root.title("News Aggregator")
         self.root.geometry("900x650")
 
         self.client = NewsAPIClient()
@@ -27,7 +27,7 @@ class NewsAggregatorGUI:
     def create_widgets(self):
         title_label = tk.Label(
             self.root,
-            text="Technology News Aggregator",
+            text="News Aggregator",
             font=("Arial", 18, "bold")
         )
         title_label.pack(pady=10)
@@ -48,6 +48,57 @@ class NewsAggregatorGUI:
         self.number_entry = tk.Entry(input_frame, width=10)
         self.number_entry.insert(0, "5")
         self.number_entry.grid(row=0, column=3, padx=5)
+
+        filter_label = tk.Label(input_frame, text="Filter By:")
+        filter_label.grid(row=1, column=0, padx=5, pady=5)
+
+        self.filter_var = tk.StringVar(value="category")
+
+        filter_menu = tk.OptionMenu(
+            input_frame,
+            self.filter_var,
+            "category",
+            "source",
+            command=self.update_filter_controls
+        )
+        filter_menu.grid(row=1, column=1, padx=5, pady=5)
+
+        category_label = tk.Label(input_frame, text="Category:")
+        category_label.grid(row=1, column=2, padx=5, pady=5)
+
+        self.category_var = tk.StringVar(value="all")
+
+        self.category_menu = tk.OptionMenu(
+            input_frame,
+            self.category_var,
+            "all",
+            "business",
+            "entertainment",
+            "general",
+            "health",
+            "science",
+            "sports",
+            "technology"
+        )
+        self.category_menu.grid(row=1, column=3, padx=5, pady=5)
+
+        source_label = tk.Label(input_frame, text="Source:")
+        source_label.grid(row=2, column=0, padx=5, pady=5)
+
+        self.source_var = tk.StringVar(value="all")
+
+        self.source_menu = tk.OptionMenu(
+            input_frame,
+            self.source_var,
+            "all",
+            "techcrunch",
+            "the-verge",
+            "wired",
+            "ars-technica",
+            "engadget"
+        )
+        self.source_menu.grid(row=2, column=1, padx=5, pady=5)
+        self.update_filter_controls()
 
         button_frame = tk.Frame(self.root)
         button_frame.pack(pady=10)
@@ -84,9 +135,20 @@ class NewsAggregatorGUI:
         )
         self.output_box.pack(pady=10)
 
+    def update_filter_controls(self, selected_filter=None):
+        if self.filter_var.get() == "category":
+            self.category_menu.config(state="normal")
+            self.source_menu.config(state="disabled")
+        else:
+            self.category_menu.config(state="disabled")
+            self.source_menu.config(state="normal")
+
     def fetch_news(self):
         keyword = self.keyword_entry.get().strip()
         number_text = self.number_entry.get().strip()
+        filter_type = self.filter_var.get()
+        category = self.category_var.get()
+        source = self.source_var.get()
 
         if not keyword:
             messagebox.showerror("Input Error", "Please enter a keyword.")
@@ -100,13 +162,23 @@ class NewsAggregatorGUI:
 
         self.output_box.delete("1.0", tk.END)
         self.output_box.insert(tk.END, f"Fetching news for keyword: {keyword}\n")
-        self.output_box.insert(tk.END, f"Number of articles: {page_size}\n\n")
+        self.output_box.insert(tk.END, f"Number of articles: {page_size}\n")
+        self.output_box.insert(tk.END, f"Filter type: {filter_type}\n")
+        if filter_type == "category":
+            self.output_box.insert(tk.END, f"Active category: {category}\n\n")
+        else:
+            self.output_box.insert(tk.END, f"Active source: {source}\n\n")
         self.root.update()
+
 
         articles = self.client.fetch_articles(
             keyword=keyword,
-            page_size=page_size
+            page_size=page_size,
+            filter_type=filter_type,
+            category=category,
+            source=source
         )
+
 
         if not articles:
             self.output_box.insert(tk.END, "No articles found.\n")
@@ -161,12 +233,12 @@ class NewsAggregatorGUI:
 
         self.processor.save_csv(
             self.current_df,
-            "data/technology_news.csv"
+            "data/news.csv"
         )
 
         messagebox.showinfo(
             "Saved",
-            "Data saved to data/technology_news.csv"
+            "Data saved to data/news.csv"
         )
 
 

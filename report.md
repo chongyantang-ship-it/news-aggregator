@@ -1,8 +1,8 @@
-# Brief Report: Technology News Aggregator
+# Brief Report: News Aggregator
 
 ## 1. Introduction
 
-This project is a Python-based Technology News Aggregator. The purpose of the application is to collect technology-related news articles from NewsAPI, enrich the article information through web scraping, clean and combine the data, visualise article trends, and provide a structured and maintainable codebase using object-oriented programming principles.
+This project is a Python-based News Aggregator. The purpose of the application is to collect news articles from NewsAPI, enrich the article information through web scraping, clean and combine the data, visualise article trends, and provide a structured and maintainable codebase using object-oriented programming principles.
 
 The project focuses on aggregating information from multiple sources and presenting it in a usable format. It demonstrates the integration of API requests, web scraping, data processing, data visualisation, unit testing, and modular software design.
 
@@ -10,7 +10,7 @@ The project focuses on aggregating information from multiple sources and present
 
 ### 2.1 Choice of Topic
 
-The topic selected for this project is technology news. This topic was chosen because technology news is frequently updated, widely available through public APIs, and suitable for real-time information aggregation. It also allows users to search for specific technology-related keywords such as AI, cybersecurity, robotics, or cloud computing.
+The topic selected for this project is news aggregation. This topic was chosen because news is frequently updated, widely available through public APIs, and suitable for real-time information aggregation. It also allows users to search for specific keywords such as AI, cybersecurity, robotics, or cloud computing.
 
 ### 2.2 Choice of API
 
@@ -28,7 +28,7 @@ The project was designed using object-oriented programming to improve modularity
 - ArticleScraper handles web scraping.
 - NewsProcessor handles data combination, cleaning, and CSV export.
 - NewsVisualizer handles data visualisation.
-- TechnologyNewsAggregator coordinates the overall workflow.
+- NewsAggregator coordinates the overall workflow.
 
 This structure makes the program easier to extend and test.
 
@@ -36,7 +36,7 @@ This structure makes the program easier to extend and test.
 
 The application follows this workflow:
 
-1. The user enters a technology-related keyword and the number of articles.
+1. The user enters a news keyword, the number of articles, and a preferred category or source filter.
 2. The program sends a request to NewsAPI.
 3. NewsAPI returns article data such as title, source, URL, and publication time.
 4. The scraper visits each article URL and extracts additional webpage information.
@@ -47,13 +47,13 @@ The application follows this workflow:
 
 ## 4. Data Processing
 
-The data processing stage combines information from both the API and the scraper. The program removes duplicate articles based on URL and removes records with missing titles. The cleaned dataset is then saved as technology_news.csv.
+The data processing stage combines information from both the API and the scraper. The program removes duplicate articles based on URL and removes records with missing titles. The cleaned dataset is then saved as data/news.csv.
 
 This step is important because data from online sources can be inconsistent, duplicated, or incomplete.
 
 ## 5. Data Visualisation
 
-The project includes a visualisation showing the distribution of articles by news source. This helps users understand which sources contribute the most articles for a given technology keyword.
+The project includes a visualisation showing the distribution of articles by news source. This helps users understand which sources contribute the most articles for a given keyword.
 
 Matplotlib was used because it is simple, reliable, and suitable for generating basic charts in Python.
 
@@ -97,4 +97,4 @@ Beyond the basic requirements, the project includes:
 
 ## 10. Conclusion
 
-The Technology News Aggregator successfully demonstrates how Python can be used to collect, enrich, process, visualise, and test data from online sources. The project combines NewsAPI, web scraping, pandas, matplotlib, OOP design, and unittest into a complete and maintainable information aggregation application.
+The News Aggregator successfully demonstrates how Python can be used to collect, enrich, process, visualise, and test data from online sources. The project combines NewsAPI, web scraping, pandas, matplotlib, OOP design, and unittest into a complete and maintainable information aggregation application.

@@ -6,26 +6,59 @@ class NewsAPIClient:
 
     def __init__(self):
         self.api_key = NEWS_API_KEY
-        self.base_url = "https://newsapi.org/v2/everything"
+        self.base_url = "https://newsapi.org/v2/top-headlines"
 
-    def fetch_articles(self, keyword="technology", page_size=5):
+    def fetch_articles(self, keyword="", page_size=5, filter_type="category", category="all", source="all"):
 
-        technology_sources = (
-            "techcrunch,"
-            "the-verge,"
-            "wired,"
-            "ars-technica,"
-            "engadget"
-        )
+
+        valid_categories = [
+            "all",
+            "business",
+            "entertainment",
+            "general",
+            "health",
+            "science",
+            "sports",
+            "technology"
+        ]
+
+        source_options = {
+            "all": "techcrunch,the-verge,wired,ars-technica,engadget",
+            "techcrunch": "techcrunch",
+            "the-verge": "the-verge",
+            "wired": "wired",
+            "ars-technica": "ars-technica",
+            "engadget": "engadget"
+        }
+
+        filter_type = filter_type.lower()
+        category = category.lower()
+        source = source.lower()
 
         params = {
-            "q": keyword,
-            "language": "en",
-            "sortBy": "publishedAt",
             "pageSize": page_size,
-            "domains": "techcrunch.com,theverge.com,wired.com",
             "apiKey": self.api_key
         }
+
+        if keyword:
+            params["q"] = keyword
+
+        if filter_type == "source":
+            if source not in source_options:
+                print("Invalid source. Using default source: all")
+                source = "all"
+
+            params["sources"] = source_options[source]
+
+        else:
+            if category not in valid_categories:
+                print("Invalid category. Using default category: all")
+                category = "all"
+
+            params["country"] = "us"
+
+            if category != "all":
+                params["category"] = category
 
         try:
             response = requests.get(

@@ -4,7 +4,7 @@ from processor import NewsProcessor
 from visualizer import NewsVisualizer
 
 
-class TechnologyNewsAggregator:
+class NewsAggregator:
 
     def __init__(self):
         self.client = NewsAPIClient()
@@ -15,18 +15,48 @@ class TechnologyNewsAggregator:
     def run(self):
 
         keyword = input(
-            "Enter a technology keyword: "
+            "Enter a news keyword: "
         )
 
         page_size = int(
             input("Number of articles: ")
         )
 
+        filter_type = input(
+            "Filter by (category/source): "
+        ).strip().lower()
+
+        if filter_type not in ["category", "source"]:
+            filter_type = "category"
+
+        category = "all"
+        source = "all"
+
+        if filter_type == "category":
+            category = input(
+                "Enter category (all, business, entertainment, general, health, science, sports, technology): "
+            ).strip().lower()
+
+            if not category:
+                category = "all"
+
+        else:
+            source = input(
+                "Enter source (all, techcrunch, the-verge, wired, ars-technica, engadget): "
+            ).strip().lower()
+
+            if not source:
+                source = "all"
+
+        
         print("\nFetching articles...")
 
         articles = self.client.fetch_articles(
             keyword=keyword,
-            page_size=page_size
+            page_size=page_size,
+            filter_type=filter_type,
+            category=category,
+            source=source
         )
 
         scraped_results = []

@@ -42,7 +42,7 @@ class NewsProcessor:
 
         return df
 
-    def save_csv(self, df, filename="technology_news.csv"):
+    def save_csv(self, df, filename="data/news.csv"):
         """
         Save dataframe to CSV.
         """
