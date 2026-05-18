@@ -94,6 +94,8 @@ Beyond the basic requirements, the project includes:
 - error handling for failed scraping requests
 - modular OOP-based code structure
 - unit tests for key components
+- category-based news filtering
+- source-based news filtering
 
 ## 10. Conclusion
 
