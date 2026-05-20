@@ -63,9 +63,11 @@ The project uses the unittest framework to test important components of the syst
 
 The tests include:
 
+- test_aggregator.py: uses mock objects to test whether the main aggregator workflow correctly calls all core system components without making real API requests or web scraping operations.
 - test_processor.py: tests data cleaning and duplicate removal.
 - test_news_api.py: tests whether the API client returns articles with required fields.
 - test_scraper.py: tests whether the scraper handles invalid URLs properly.
+- test_visualizer.py: tests whether the visualizer successfully generates and displays source distribution charts.
 
 These tests improve the reliability of the codebase and help confirm that the core functions work as expected.
 
