@@ -130,7 +130,11 @@ This project follows ethical web scraping practices by scraping only publicly ac
 ## Authors
 
 Group Project - News Aggregator
+
 Chongyan Tang 26057101
+
 Zheke Yi 25655150
+
 Wancheng Liu 25752813
+
 TaoLou 26044949
