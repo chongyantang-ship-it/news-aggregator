@@ -32,6 +32,8 @@ The project was designed using object-oriented programming to improve modularity
 
 This structure makes the program easier to extend and test.
 
+While the current implementation mainly demonstrates encapsulation through separate responsibility-based classes, the modular structure also supports future extension through inheritance and polymorphism. For example, additional API clients, scraper classes, or visualisation modules could be added later while following the same workflow interface.
+
 ## 3. Implementation Overview
 
 The application follows this workflow:
