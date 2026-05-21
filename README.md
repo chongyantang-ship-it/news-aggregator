@@ -49,7 +49,9 @@ news-aggregator/
 └── tests/
     ├── test_processor.py
     ├── test_news_api.py
-    └── test_scraper.py
+    ├── test_scraper.py
+    ├── test_aggregator.py
+    └── test_visualizer.py
 ```
 
 ## Installation
@@ -117,6 +119,8 @@ Run the tests:
 python tests/test_processor.py
 python tests/test_news_api.py
 python tests/test_scraper.py
+python tests/test_aggregator.py
+python tests/test_visualizer.py
 ```
 
 ## Ethical Considerations
